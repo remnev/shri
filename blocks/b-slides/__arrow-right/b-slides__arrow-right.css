@@ -1,0 +1,10 @@
+.b-slides__arrow-right
+{
+	position: absolute;
+	right: 10px;
+	top: 120px;
+	height: 530px;
+	width: 60px;
+	background: url("b-slides__arrow-right.png") center center no-repeat;
+	cursor: pointer;
+}

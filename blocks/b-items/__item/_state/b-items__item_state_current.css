@@ -1,0 +1,5 @@
+.b-items__item_state_current
+{
+	background: url("b-items__item_state_current.png") no-repeat 100% 0;
+	cursor: default;
+}

@@ -1,0 +1,9 @@
+.b-items__item
+{
+	float: left;
+	width: 90px;
+	margin-left: -10px;
+	line-height: 60px;
+	background: url("b-items__item.png") no-repeat 100% 0;
+	cursor: pointer;
+}

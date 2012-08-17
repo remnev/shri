@@ -1,0 +1,9 @@
+.b-slides__question
+{
+	width: 778px;
+	height: 78px;
+	border: 1px solid #b2b2b2;
+	padding: 10px 80px;
+	background-color: #0d0d0d;
+	text-indent: 20px;
+}

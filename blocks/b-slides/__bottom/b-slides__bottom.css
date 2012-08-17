@@ -1,0 +1,12 @@
+.b-slides__bottom
+{
+	margin: 0 auto;
+	height: 30px;
+	font-family: Verdana, sans-serif;
+	font-size: 18px;
+	position: absolute;
+	bottom: 10px;
+	width: 10%;
+	left: 45%;
+	text-align: center;
+}

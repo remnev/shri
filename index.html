@@ -1,0 +1,392 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Yuriy Remnev — answers for questions</title>
+  <link rel="stylesheet" href="pages/index/index.css">
+  <link rel="stylesheet" href="http://www.codetunnel.com/sitecontent/styles/prettify.css">
+  <script src="http://yandex.st/jquery/1.6.2/jquery.js"></script>
+  <script src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js'></script>
+  <script src="pages/index/index.js"></script>
+  <script>
+  	$(function() { prettyPrint(); })
+  </script>	
+  <style type="text/css">
+	pre {overflow-y: scroll; overflow-x: hidden; height: 410px; width: 778px; font-size: 12px;}
+  </style>
+</head>
+<body class="b-page">
+	<div class="b-menu">
+	    <h1>Технические вопросы</h1>
+	    <ul class="b-items">
+	    	<li class="b-items__item b-items__item_state_current">1</li>
+			<li class="b-items__item">2</li>
+			<li class="b-items__item">3</li>
+			<li class="b-items__item">4</li>
+			<li class="b-items__item">5</li>
+			<li class="b-items__item">6</li>
+	    </ul>
+	</div>
+	<div class="b-slider">
+		<ul class="b-slides">
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Перечислите известные вам инструменты и приёмы для отладки кода в разных браузерах.
+				</div>
+				<div class="b-slides__answer">
+					<p>Для отладки кода я использую следующие инструменты: плагин firebug для Firefox, встроенный веб-инспектор для webkit-браузеров, dragonfly для Opera, developer tools для IE.
+					Если по каким-то причинам я не могу воспользоваться перечисленными инструментами, я подключаю к сайту скрипт firebug-lite.
+					Если мне необходимо отлаживать код в мобильном браузере, я могу создать специальный контейнер (расположенный поверх остального контента), в который буду выводить отладочную информацию.</p>
+					<p>Обычно я пользуюсь отладочными методами объекта console — log, dir, time и т.д. Эти методы позволяют выводить в консоль браузера значения переменных, объекты или значения свойств объектов, а также значения таймеров, замеряющих время выполнения операций в коде. Если браузер не предоставляет нужных методов, я расширяю объект console необходимым функционалом.</p>
+					<p>При отладке сложных циклов, я ставлю ключевое слово debugger в нужное место кода, далее в инспекторе включаю режим остановки на точках останова и исследую содержимое переменных и объектов на текущей итерации.</p>
+				</div>
+				<div class="b-slides__bottom">1</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Опишите своими словами, что происходит в браузерах при клике на ссылку yandex.ru (полнота ответа — на ваше усмотрение).
+				</div>
+				<div class="b-slides__answer">
+					При клике на ссылке yandex.ru происходит следующее:
+					<ul>
+						<li>событие mousedown</li>
+						<li>событие mouseup</li>
+						<li>событие click</li>
+						<li>срабатывает действие браузера по умолчанию для клика — формируется и отправляется запрос на хост, указанный в атрибуте HREF ссылки, далее ожидается, принимается и обрабатывается ответ.</li>
+					</ul>
+				</div>
+				<div class="b-slides__bottom">2</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Предположим, что мы представляем автосалон по продаже японских и немецких автомобилей. У нас есть базовые классы и примеры их использования. Допишите недостающий код.
+				</div>
+				<div class="b-slides__answer">
+					<pre class="prettyprint">
+						<code class="language-js">
+/**
+* Создает экземпляр Машины
+* @this {Car}
+* @param {string} manufacturer Производитель
+* @param {string} model Модель
+* @param {number} year Год производство
+*/
+function Car(manufacturer, model, year) {
+	this.manufacturer = manufacturer;
+	this.model = model;
+	this.year = year || new Date().getFullYear();
+
+	this.getInfo = function() {
+		return this.manufacturer +' '+ this.model +' '+ this.year;
+	};
+	this.getDetailedInfo = function() {
+		return 'Производитель: ' + this.manufacturer +'. Модель: '+ this.model +'. Год: '+ this.year;
+	};
+	this.getCountry = function() {
+		switch (this.manufacturer.toLowerCase()) {
+			case 'bmw':
+			case 'audi':
+				return 'Germany';
+			case 'toyota':
+				return 'Japan';
+			case 'lada':
+			case 'kamaz':
+			case 'uaz':
+				return 'Russia';
+		}
+	};
+}
+// @TODO: если конструктор вызывается без указания текущего года, то подставлять текущий
+// @TODO: реализовать методы вывода информации о машине:
+
+// console.log(bmw); // BMW X5 2010
+// console.log(bmw.getInfo()); // BMW X5 2010
+// console.log(bmw.getDetailedInfo()); // Производитель: BMW. Модель: X5. Год: 2010
+
+var bmw = new Car("BMW", "X5", 2010),
+    audi = new Car("Audi", "Q5", 2012),
+    toyota = new Car("Toyota", "Camry"),
+    lada = new Car("LADA", "Granta", 2012),
+    kamaz = new Car("KAMAZ", "-", 2010),
+    uaz = new Car("UAZ", "Patriot");
+
+/**
+ * Создает экземпляр Автосалона
+ * @this {CarDealer}
+ * @param {string} name Название автосалона
+ */
+function CarDealer(name) {
+	this.name = name;
+	this.cars = [];
+	this.price = [];
+
+	this.add = function() {
+		for (var i=0; i < arguments.length; i++) {
+			this.cars.push(arguments[i]);
+		};
+		return this;
+	};
+	this.setPrice = function(car, price) {
+		this.price.push({car: car, price: price});
+		return this;
+	};
+	this.list = function() {
+		var result = [];
+		for (var i=0; i < this.cars.length; i++) {
+			result.push(this.cars[i].getInfo());
+		};
+		return result.join(', ');
+	};
+	this.listByCountry = function(country) {
+		var result = [];
+		for (var i=0; i < this.cars.length; i++) {
+			if (this.cars[i].getCountry() == country) result.push(this.cars[i].getInfo());
+		};
+		return result.join(', ');
+	};
+	this.listByCurrency = function(currency) {
+		if (currency != 'R') return; // Метод работает только с рублями (по условию ниже)
+		var result = [];
+		for (var i=0; i < this.price.length; i++) {
+			if (this.price[i].price.slice(0, 1) == currency) {
+			  for (var j=0; j < this.cars.length; j++) {
+			    if (this.cars[j].getInfo() == this.price[i].car) result.push(this.cars[j].getInfo());
+			  };
+			}
+		};
+		return result.join(', ');
+	};
+}
+
+var yandex = new CarDealer('Яндекс.Авто');
+
+// @TODO: реализовать метод добавления машин в автосалон.
+// Предусмотреть возможность добавления одной машины, нескольких машин.
+yandex
+    .add(toyota)
+    .add(bmw, audi)
+    .add(lada, kamaz, uaz);
+
+// @TODO: реализовать метод установки цены на машину
+/**
+ * Установить цену на машину
+ * @param {string} car идентификатор машины
+ * @param {string} price стоимость
+ */
+// идентификатор машины составляется следующим образом "производитель модель год"
+// стоимость машины может быть задана в двух валютах: йена и евро.
+yandex
+    .setPrice('BMW X5 2010', '€2000')
+    .setPrice('Audi Q5 2012', '€3000')
+    .setPrice('Toyota Camry 2012', '¥3000')
+    .setPrice('LADA Granta 2012', 'R25000')
+    .setPrice('KAMAZ - 2010', 'R37040')
+    .setPrice('UAZ Patriot 2012', 'R300');
+
+// @TODO: реализовать вывод списка автомобилей в продаже,
+// с фильтрацией по стране производителю, используя метод getCountry:
+// function getCountry() {
+//     switch (this.manufacturer.toLowerCase()) {
+//         case 'bmw':
+// 		case 'audi':
+//             return 'Germany';
+// 
+//         case 'toyota':
+//             return 'Japan';
+// 	}
+// }
+
+yandex.list(); //BMW X5 2010, Audi Q5 2012, Toyota Camry 2012
+yandex.listByCountry('Germany'); //BMW X5 2010, Audi Q5 2012
+
+// @TODO: бонус! выводить список машин с ценой в рублях.
+yandex.listByCurrency('R'); //LADA Granta, KAMAZ, UAZ Patriot
+						</code>
+					</pre>
+				</div>
+				<div class="b-slides__bottom">3</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Найдите все текстовые файлы (*.txt), в имени которых содержится «yandex», а в содержимом — «школа разработки интерфейсов».
+						</code>
+					</pre>
+				</div>
+				<div class="b-slides__answer">
+					<pre class="prettyprint">
+						<code class="language-bash">
+find . -name '*yandex*.txt' | xargs -I % grep -nH 'школа разработки интерфейсов' %
+						</code>
+					</pre>
+				</div>
+				<div class="b-slides__bottom">4</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Дана программа, реализованная одновременно на Bash, Python и Perl. Программа принимает произвольное количество аргументов и печатает их количество. Нужно добавить опцию -v для verbose-режима, в котором дополнительно выводится значение каждого из аргументов.
+				</div>
+				<div class="b-slides__answer">
+					Bash:
+					<pre class="prettyprint">
+						 <code class="language-bash">
+#!/usr/bin/env bash
+
+usage() {
+cat << EOF
+Usage: printargs.sh [OPTIONS] [ARGUMENTS]
+  Print the number of arguments.
+OPTIONS:
+  -h      print help message
+  -m MSG  custom message
+  -v ARGS print arguments and count
+Examples:
+  printargs.sh a b c
+  printargs.sh -m 'Arguments count: ' a b c
+  printargs.sh -h
+  printargs.sh -v a b c
+EOF
+}
+
+while getopts “hmv:” OPTION # TODO: add '-v' option for verbose mode
+do
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            shift;;
+        m)
+            MESSAGE=$OPTARG
+            shift;shift;;
+        v)
+            VERBOSE=true
+            shift;;
+    esac
+done
+
+COUNT=0
+
+for ARG in $@; do
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+	if [ "$VERBOSE" ]; then
+	    echo $ARG
+	fi
+    let COUNT+=1
+done
+
+if [[ "$MESSAGE" != "" ]]; then
+    echo $MESSAGE
+fi
+
+echo $COUNT
+						</code>
+					</pre>
+					Python:
+					<pre class="prettyprint">
+						<code class="language-python">
+#!/usr/bin/env python
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Print the number of arguments.')
+parser.add_argument('arguments', metavar='ARG', type=str, nargs='*', help='some arguments')
+parser.add_argument('-m', dest='message', default='', help='custom message')
+# TODO: add '-v' option for verbose mode
+parser.add_argument('--verbose', '-v', action='store_true', help='verbose mode')
+
+args = parser.parse_args()
+
+count = 0
+
+for a in args.arguments:
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+	if args.verbose:
+		print(a)
+    count += 1
+
+if args.message != '':
+    print(args.message)
+
+print(count)
+						</code>
+					</pre>
+					Perl:
+					<pre class="prettyprint">
+						<code class="language-perl">
+#!/usr/bin/env perl
+
+use strict;
+use Getopt::Long;
+use Pod::Usage;
+my $help;
+my $message = '';
+@ARGV and GetOptions(
+    "h" => \$help,
+    "m:s" => \$message,
+    # TODO: add '-v' option for verbose mode
+) or pod2usage(1);
+pod2usage(-verbose => 2, -exitval => 2) if $help;
+my $count = 0;
+foreach(@ARGV) {
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+    $count++;
+}
+if($message ne "") {
+    print($message . "\n");
+}
+print($count . "\n");
+__END__
+
+=head1 NAME
+    printargs.pl - Print the number of arguments.
+
+=head1 SYNOPSIS
+    printargs.pl [options] [arguments]
+
+=head1 OPTIONS
+    -h      Show help message.
+    -m MSG  Specify a custom message.
+
+=head1 EXAMPLE
+    printargs.sh a b c
+    printargs.sh -m 'Arguments count: ' a b c
+    printargs.sh -h
+						</code>
+					</pre>
+				</div>
+				<div class="b-slides__bottom">5</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+			<li class="b-slides__slide">
+				<div class="b-slides__question">
+					Расскажите, в каком объёме и при каких обстоятельствах вы изучали следующие темы: языки программирования (императивные/декларативные, разные системы типов), структуры (классы, структуры данных, примитивные типы), парадигмы (события, ООП, параллельность/асинхронность, кеширование), алгоритмы (парсинг, сортировка, поиск), паттерны.
+				</div>
+				<div class="b-slides__answer">
+					<p>В колледже я изучал Pascal, в университете — С. Это было очень поверхностное изучение.</p>
+					<p>На последнем курсе университета я начал изучать javascript, читал книги Фленагана и Бибо/Каца (по jQuery). Чтобы получить практические навыки в использовании языка, я записался на курсы Ильи Кантора (<a href="http://javascript.ru/courses">javascript.ru</a>). В начале курса нас было 26 человек, к завершению осталось 5. Итоговую курсовую работу выполнили 3 человека, среди которых я тоже был. Вот <a href="http://mypunto.ru/alpha/">ссылка</a> на курсовую работу.</p>
+					<p>Параллельно я изучал html, css и устроился на работу javascript-разработчиком в маленькую компанию. Там я в разы расширил свои навыки и знания. После чего устроился работать в компанию Связной-загрузка на ту же должность, где получаю еще больше практического опыта, но уже на более серьезном уровне.</p>
+					<p>Со структурами и типами данных я познакомился в колледже. Конкретно для javascript — из книги Фленагана и курсов Ильи Кантора.
+					События — теорию из книг и курсов, практику на работе. С событиями приходится работать каждый день.
+					ООП — из курсов и различных статей.
+					Параллельность/асинхронность — был период, когда я работал над проектом на Node.js, там я понял что такое асинхронность. Теорию черпал из книг, статей и курсов.
+					Кеширование — общее понимание появилось во время обучения в колледже и университете. Практические навыки — во время работы.
+					Алгоритмы и паттерны я изучал в колледже и университете, а конкретное применение в javascript — на курсах и из книг.</p>
+				</div>
+				<div class="b-slides__bottom">6</div>
+				<div class="b-slides__arrow-left"></div>
+				<div class="b-slides__arrow-right"></div>
+			</li>
+		</ul>
+	</div>
+</body>

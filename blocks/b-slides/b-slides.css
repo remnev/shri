@@ -1,0 +1,12 @@
+.b-slides
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 5880px;
+	height: 660px;
+	-webkit-transition: margin-left 0.5s;
+	-moz-transition: margin-left 0.5s;
+	-o-transition: margin-left 0.5s;
+	transition: margin-left 0.5s;
+}

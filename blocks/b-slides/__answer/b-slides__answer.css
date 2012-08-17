@@ -1,0 +1,11 @@
+.b-slides__answer
+{
+	width: 778px;
+	height: 428px;
+	border: 1px solid #b2b2b2;
+	padding: 50px 80px;
+	margin-top: 10px;
+	background-color: #0d0d0d;
+	overflow: auto;
+	text-indent: 20px;
+}

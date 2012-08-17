@@ -1,0 +1,8 @@
+.b-slides__arrow-right_state_hovered
+{
+	background: #383838 url("b-slides__arrow-right_state_hovered.png") center center no-repeat;
+	height: 528px;
+	border-top: 1px solid #b2b2b2;
+	border-right: 1px solid #b2b2b2;
+	border-bottom: 1px solid #b2b2b2;
+}
