@@ -1,0 +1,15 @@
+@import url(blocks/b-page/b-page.css);
+@import url(blocks/b-menu/b-menu.css);
+@import url(blocks/b-items/b-items.css);
+@import url(blocks/b-items/__item/b-items__item.css);
+@import url(blocks/b-items/__item/_state/b-items__item_state_current.css);
+@import url(blocks/b-slider/b-slider.css);
+@import url(blocks/b-slides/b-slides.css);
+@import url(blocks/b-slides/__slide/b-slides__slide.css);
+@import url(blocks/b-slides/__question/b-slides__question.css);
+@import url(blocks/b-slides/__answer/b-slides__answer.css);
+@import url(blocks/b-slides/__arrow-left/b-slides__arrow-left.css);
+@import url(blocks/b-slides/__arrow-left/_state/b-slides__arrow-left_state_hovered.css);
+@import url(blocks/b-slides/__arrow-right/b-slides__arrow-right.css);
+@import url(blocks/b-slides/__arrow-right/_state/b-slides__arrow-right_state_hovered.css);
+@import url(blocks/b-slides/__bottom/b-slides__bottom.css);
