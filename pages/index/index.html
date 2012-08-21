@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Yuriy Remnev — answers for questions</title>
+  <link rel="stylesheet" href="http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="http://www.codetunnel.com/sitecontent/styles/prettify.css">
   <script src="http://yandex.st/jquery/1.6.2/jquery.js"></script>
   <script src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js'></script>
+  <script src='http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js'></script>
+  <script src='http://jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js'></script>
   <script src="index.js"></script>
   <script>
   	$(function() { prettyPrint(); })
-  </script>	
-  <style type="text/css">
-	pre {overflow-y: scroll; overflow-x: hidden; height: 410px; width: 778px; font-size: 12px;}
-  </style>
+  </script>
 </head>
 <body class="b-page">
 	<div class="b-menu">
@@ -34,11 +34,13 @@
 					Перечислите известные вам инструменты и приёмы для отладки кода в разных браузерах.
 				</div>
 				<div class="b-slides__answer">
+					<div class="text">
 					<p>Для отладки кода я использую следующие инструменты: плагин firebug для Firefox, встроенный веб-инспектор для webkit-браузеров, dragonfly для Opera, developer tools для IE.
 					Если по каким-то причинам я не могу воспользоваться перечисленными инструментами, я подключаю к сайту скрипт firebug-lite.
 					Если мне необходимо отлаживать код в мобильном браузере, я могу создать специальный контейнер (расположенный поверх остального контента), в который буду выводить отладочную информацию.</p>
 					<p>Обычно я пользуюсь отладочными методами объекта console — log, dir, time и т.д. Эти методы позволяют выводить в консоль браузера значения переменных, объекты или значения свойств объектов, а также значения таймеров, замеряющих время выполнения операций в коде. Если браузер не предоставляет нужных методов, я расширяю объект console необходимым функционалом.</p>
 					<p>При отладке сложных циклов, я ставлю ключевое слово debugger в нужное место кода, далее в инспекторе включаю режим остановки на точках останова и исследую содержимое переменных и объектов на текущей итерации.</p>
+					</div>
 				</div>
 				<div class="b-slides__bottom">1</div>
 				<div class="b-slides__arrow-left"></div>
@@ -49,6 +51,7 @@
 					Опишите своими словами, что происходит в браузерах при клике на ссылку yandex.ru (полнота ответа — на ваше усмотрение).
 				</div>
 				<div class="b-slides__answer">
+					<div class="text">
 					При клике на ссылке yandex.ru происходит следующее:
 					<ul>
 						<li>событие mousedown</li>
@@ -56,6 +59,7 @@
 						<li>событие click</li>
 						<li>срабатывает действие браузера по умолчанию для клика — формируется и отправляется запрос на хост, указанный в атрибуте HREF ссылки, далее ожидается, принимается и обрабатывается ответ.</li>
 					</ul>
+					</div>
 				</div>
 				<div class="b-slides__bottom">2</div>
 				<div class="b-slides__arrow-left"></div>
@@ -66,6 +70,7 @@
 					Предположим, что мы представляем автосалон по продаже японских и немецких автомобилей. У нас есть базовые классы и примеры их использования. Допишите недостающий код.
 				</div>
 				<div class="b-slides__answer">
+					<div class="text">
 					<pre class="prettyprint">
 						<code class="language-js">
 /**
@@ -76,29 +81,29 @@
 * @param {number} year Год производство
 */
 function Car(manufacturer, model, year) {
-	this.manufacturer = manufacturer;
-	this.model = model;
-	this.year = year || new Date().getFullYear();
+ this.manufacturer = manufacturer;
+ this.model = model;
+ this.year = year || new Date().getFullYear();
 
-	this.getInfo = function() {
-		return this.manufacturer +' '+ this.model +' '+ this.year;
-	};
-	this.getDetailedInfo = function() {
-		return 'Производитель: ' + this.manufacturer +'. Модель: '+ this.model +'. Год: '+ this.year;
-	};
-	this.getCountry = function() {
-		switch (this.manufacturer.toLowerCase()) {
-			case 'bmw':
-			case 'audi':
-				return 'Germany';
-			case 'toyota':
-				return 'Japan';
-			case 'lada':
-			case 'kamaz':
-			case 'uaz':
-				return 'Russia';
-		}
-	};
+ this.getInfo = function() {
+	return this.manufacturer +' '+ this.model +' '+ this.year;
+ };
+ this.getDetailedInfo = function() {
+	return 'Производитель: ' + this.manufacturer +'. Модель: '+ this.model +'. Год: '+ this.year;
+ };
+ this.getCountry = function() {
+	switch (this.manufacturer.toLowerCase()) {
+		case 'bmw':
+		case 'audi':
+			return 'Germany';
+		case 'toyota':
+			return 'Japan';
+		case 'lada':
+		case 'kamaz':
+		case 'uaz':
+			return 'Russia';
+	}
+ };
 }
 // @TODO: если конструктор вызывается без указания текущего года, то подставлять текущий
 // @TODO: реализовать методы вывода информации о машине:
@@ -149,16 +154,16 @@ function CarDealer(name) {
 		return result.join(', ');
 	};
 	this.listByCurrency = function(currency) {
-		if (currency != 'R') return; // Метод работает только с рублями (по условию ниже)
-		var result = [];
-		for (var i=0; i < this.price.length; i++) {
-			if (this.price[i].price.slice(0, 1) == currency) {
-			  for (var j=0; j < this.cars.length; j++) {
-			    if (this.cars[j].getInfo() == this.price[i].car) result.push(this.cars[j].getInfo());
-			  };
-			}
-		};
-		return result.join(', ');
+	 if (currency != 'R') return; // Метод работает только с рублями (по условию ниже)
+	 var result = [];
+	 for (var i=0; i < this.price.length; i++) {
+		if (this.price[i].price.slice(0, 1) == currency) {
+		 for (var j=0; j < this.cars.length; j++) {
+		   if (this.cars[j].getInfo() == this.price[i].car) result.push(this.cars[j].getInfo());
+		 };
+		}
+	 };
+	 return result.join(', ');
 	};
 }
 
@@ -207,6 +212,7 @@ yandex.listByCountry('Germany'); //BMW X5 2010, Audi Q5 2012
 yandex.listByCurrency('R'); //LADA Granta, KAMAZ, UAZ Patriot
 						</code>
 					</pre>
+					</div>
 				</div>
 				<div class="b-slides__bottom">3</div>
 				<div class="b-slides__arrow-left"></div>
@@ -219,11 +225,13 @@ yandex.listByCurrency('R'); //LADA Granta, KAMAZ, UAZ Patriot
 					</pre>
 				</div>
 				<div class="b-slides__answer">
+					<div class="text">
 					<pre class="prettyprint">
 						<code class="language-bash">
 find . -name '*yandex*.txt' | xargs -I % grep -nH 'школа разработки интерфейсов' %
 						</code>
 					</pre>
+					</div>
 				</div>
 				<div class="b-slides__bottom">4</div>
 				<div class="b-slides__arrow-left"></div>
@@ -234,7 +242,8 @@ find . -name '*yandex*.txt' | xargs -I % grep -nH 'школа разработк
 					Дана программа, реализованная одновременно на Bash, Python и Perl. Программа принимает произвольное количество аргументов и печатает их количество. Нужно добавить опцию -v для verbose-режима, в котором дополнительно выводится значение каждого из аргументов.
 				</div>
 				<div class="b-slides__answer">
-					Bash:
+					<div class="text">
+					<p>Bash:</p>
 					<pre class="prettyprint">
 						 <code class="language-bash">
 #!/usr/bin/env bash
@@ -289,7 +298,7 @@ fi
 echo $COUNT
 						</code>
 					</pre>
-					Python:
+					<p>Python:</p>
 					<pre class="prettyprint">
 						<code class="language-python">
 #!/usr/bin/env python
@@ -319,7 +328,7 @@ if args.message != '':
 print(count)
 						</code>
 					</pre>
-					Perl:
+					<p>Perl:</p>
 					<pre class="prettyprint">
 						<code class="language-perl">
 #!/usr/bin/env perl
@@ -363,6 +372,7 @@ __END__
     printargs.sh -h
 						</code>
 					</pre>
+					</div>
 				</div>
 				<div class="b-slides__bottom">5</div>
 				<div class="b-slides__arrow-left"></div>
@@ -373,6 +383,7 @@ __END__
 					Расскажите, в каком объёме и при каких обстоятельствах вы изучали следующие темы: языки программирования (императивные/декларативные, разные системы типов), структуры (классы, структуры данных, примитивные типы), парадигмы (события, ООП, параллельность/асинхронность, кеширование), алгоритмы (парсинг, сортировка, поиск), паттерны.
 				</div>
 				<div class="b-slides__answer">
+					<div class="text">
 					<p>В колледже я изучал Pascal, в университете — С. Это было очень поверхностное изучение.</p>
 					<p>На последнем курсе университета я начал изучать javascript, читал книги Фленагана и Бибо/Каца (по jQuery). Чтобы получить практические навыки в использовании языка, я записался на курсы Ильи Кантора (<a href="http://javascript.ru/courses">javascript.ru</a>). В начале курса нас было 26 человек, к завершению осталось 5. Итоговую курсовую работу выполнили 3 человека, среди которых я тоже был. Вот <a href="http://mypunto.ru/alpha/">ссылка</a> на курсовую работу.</p>
 					<p>Параллельно я изучал html, css и устроился на работу javascript-разработчиком в маленькую компанию. Там я в разы расширил свои навыки и знания. После чего устроился работать в компанию Связной-загрузка на ту же должность, где получаю еще больше практического опыта, но уже на более серьезном уровне.</p>
@@ -382,6 +393,7 @@ __END__
 					Параллельность/асинхронность — был период, когда я работал над проектом на Node.js, там я понял что такое асинхронность. Теорию черпал из книг, статей и курсов.
 					Кеширование — общее понимание появилось во время обучения в колледже и университете. Практические навыки — во время работы.
 					Алгоритмы и паттерны я изучал в колледже и университете, а конкретное применение в javascript — на курсах и из книг.</p>
+					</div>
 				</div>
 				<div class="b-slides__bottom">6</div>
 				<div class="b-slides__arrow-left"></div>

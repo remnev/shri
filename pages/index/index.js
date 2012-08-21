@@ -12,6 +12,12 @@ $(function() {
 })
 /* ../../blocks/b-items/b-items.js: end */ /**/
 
+/* ../../blocks/b-slides/__answer/b-slides__answer.js: begin */ /**/
+$(function() {
+	$('.b-slides__answer .text').jScrollPane();
+})
+/* ../../blocks/b-slides/__answer/b-slides__answer.js: end */ /**/
+
 /* ../../blocks/b-slides/__arrow-left/b-slides__arrow-left.js: begin */ /**/
 $(function() {
 	$('.b-slides__arrow-left').click(function(e) {
