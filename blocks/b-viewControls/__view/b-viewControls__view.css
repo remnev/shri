@@ -1,0 +1,6 @@
+.b-viewControls__view
+{
+	display: inline-block;
+	border-bottom: 1px dashed #E5E5E5;
+	cursor: pointer;
+}

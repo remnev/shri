@@ -56,3 +56,12 @@ $(function() {
 })
 /* ../../blocks/b-slides/__arrow-right/b-slides__arrow-right.js: end */ /**/
 
+/* ../../blocks/b-viewControls/b-viewControls.js: begin */ /**/
+$(function() {
+	$('.b-viewControls').click(function(e) {
+		$(this).children('div').toggleClass('b-viewControls__view_state_current');
+		$('.b-page').toggleClass('b-page_view_print');
+	});
+})
+/* ../../blocks/b-viewControls/b-viewControls.js: end */ /**/
+

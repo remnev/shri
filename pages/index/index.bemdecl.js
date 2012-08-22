@@ -1,5 +1,6 @@
 exports.blocks = [
-	{ name: 'b-page' },
+	{ name: 'b-page',
+	  mods: [{name: 'view', vals: ['print']}] },
 	{ name: 'b-menu' },
 	{ name: 'b-items',
 	  elems: [
@@ -18,4 +19,9 @@ exports.blocks = [
 		  mods: [{name: 'state', vals: ['hovered']}] },
 		{ name: 'bottom' }
 	]},
+	{ name: 'b-viewControls',
+	  elems: [
+		{ name: 'view',
+		  mods: [{name: 'state', vals: ['current']}] }
+	  ]},
 ];
