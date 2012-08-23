@@ -1,0 +1,13 @@
+.b-print
+{
+	display: none;
+	text-indent: 20px;
+}
+.b-print h2
+{
+	font-size: 1em;
+}
+.b-print pre span
+{
+	color: black;
+}

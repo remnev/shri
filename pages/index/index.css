@@ -1,6 +1,7 @@
 @import url(../../blocks/b-page/b-page.css);
 @import url(../../blocks/b-page/_view/b-page_view_print.css);
 @import url(../../blocks/b-menu/b-menu.css);
+@import url(../../blocks/b-menu/_view/b-menu_view_print.css);
 @import url(../../blocks/b-items/b-items.css);
 @import url(../../blocks/b-items/__item/b-items__item.css);
 @import url(../../blocks/b-items/__item/_state/b-items__item_state_current.css);
@@ -17,3 +18,5 @@
 @import url(../../blocks/b-viewControls/b-viewControls.css);
 @import url(../../blocks/b-viewControls/__view/b-viewControls__view.css);
 @import url(../../blocks/b-viewControls/__view/_state/b-viewControls__view_state_current.css);
+@import url(../../blocks/b-viewControls/__view/_view/b-viewControls__view_view_print.css);
+@import url(../../blocks/b-print/b-print.css);
